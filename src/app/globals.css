@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+@variant dark (&:is(.dark *));
+
+:root {
+  --background: #f7f5ff;
+  --foreground: #1e1b2e;
+  --surface: #ffffff;
+  --primary: #7c5cfc;
+  --primary-strong: #6344e0;
+  --primary-light: #ece7ff;
+  --accent: #f97066;
+  --accent-warm: #fbbf24;
+  --sky: #38bdf8;
+  --peach: #fdba74;
+  --mint: #6ee7b7;
+  --rose: #fda4af;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-warm: var(--accent-warm);
+  --color-sky: var(--sky);
+  --color-peach: var(--peach);
+  --color-mint: var(--mint);
+  --color-rose: var(--rose);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  --color-gray-50: #faf9fe;
+  --color-gray-100: #f3f1fa;
+  --color-gray-200: #e8e5f0;
+  --color-gray-300: #d4d0e3;
+  --color-gray-400: #a9a3bf;
+  --color-gray-500: #7f7999;
+  --color-gray-600: #5e5878;
+  --color-gray-700: #45405d;
+  --color-gray-800: #302c47;
+  --color-gray-900: #1e1b2e;
+  --color-gray-950: #110f1e;
+
+  --color-blue-50: #eef6ff;
+  --color-blue-100: #d9ecff;
+  --color-blue-200: #bbd8ff;
+  --color-blue-300: #8bbfff;
+  --color-blue-400: #549cff;
+  --color-blue-500: #2d78ff;
+  --color-blue-600: #1958e3;
+  --color-blue-700: #1445c0;
+  --color-blue-800: #16389c;
+  --color-blue-900: #18337b;
+  --color-blue-950: #0e1f4d;
+
+  --color-green-50: #eefdf4;
+  --color-green-100: #d6fae5;
+  --color-green-200: #b0f2cd;
+  --color-green-300: #7ae5b0;
+  --color-green-400: #3dd18e;
+  --color-green-500: #18b876;
+  --color-green-600: #0d965f;
+  --color-green-700: #0c784f;
+  --color-green-800: #0e5f41;
+  --color-green-900: #0d4e37;
+
+  --color-purple-50: #f5f1ff;
+  --color-purple-100: #ece7ff;
+  --color-purple-200: #ddd3ff;
+  --color-purple-300: #c5b3ff;
+  --color-purple-400: #a988fc;
+  --color-purple-500: #8f5df6;
+  --color-purple-600: #7c3ded;
+  --color-purple-700: #6b2dd5;
+  --color-purple-800: #5925b0;
+  --color-purple-900: #4a2090;
+}
+
+.dark {
+  --background: #110f1e;
+  --foreground: #f5f3ff;
+  --surface: #1e1b2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(124,92,252,0.08), transparent 36rem),
+    radial-gradient(ellipse at 5% 100%, rgba(253,186,116,0.07), transparent 30rem),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 500ms ease, color 500ms ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #ddd3ff;
+  color: #4a2090;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button {
+  transition:
+    color 220ms cubic-bezier(.4,0,.2,1),
+    background-color 220ms cubic-bezier(.4,0,.2,1),
+    border-color 220ms cubic-bezier(.4,0,.2,1),
+    box-shadow 220ms cubic-bezier(.4,0,.2,1),
+    transform 220ms cubic-bezier(.4,0,.2,1);
+}
+
+button:not(:disabled):active,
+a:active {
+  transform: scale(0.97);
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+input,
+select,
+textarea {
+  transition:
+    border-color 220ms cubic-bezier(.4,0,.2,1),
+    box-shadow 220ms cubic-bezier(.4,0,.2,1),
+    background-color 220ms cubic-bezier(.4,0,.2,1);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(124,92,252,0.15);
+}
+
+/* ── Page entrance ── */
+main > div {
+  animation: page-arrive 600ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes page-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Staggered fade-in utility ── */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeInUp 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.fade-in-up-delay-1 { animation-delay: 100ms; }
+.fade-in-up-delay-2 { animation-delay: 200ms; }
+.fade-in-up-delay-3 { animation-delay: 300ms; }
+.fade-in-up-delay-4 { animation-delay: 400ms; }
+.fade-in-up-delay-5 { animation-delay: 500ms; }
+.fade-in-up-delay-6 { animation-delay: 600ms; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Scale-in utility ── */
+.scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+  animation: scaleIn 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Floating animation ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ── Pulse glow ── */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124,92,252,0.25); }
+  50% { box-shadow: 0 0 40px rgba(124,92,252,0.45); }
+}
+
+/* ── Slide in from left ── */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Slide in from right ── */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Smooth card hover ── */
+.card-hover {
+  transition: transform 350ms cubic-bezier(.4,0,.2,1),
+    box-shadow 350ms cubic-bezier(.4,0,.2,1);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(30,27,46,0.1), 0 0 0 1px rgba(124,92,252,0.08);
+}
+
+/* ── Gradient text utility ── */
+.gradient-text {
+  background: linear-gradient(135deg, #7c5cfc 0%, #f97066 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Shimmer loader ── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
